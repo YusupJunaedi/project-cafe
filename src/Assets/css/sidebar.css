@@ -1,0 +1,25 @@
+.sidebar {
+  width: 5%;
+  display: flex;
+  flex-direction: column;
+  background-color: blanchedalmond;
+  text-align: center;
+}
+
+.sidebar img {
+  width: 50%;
+}
+
+.logo-sidebar {
+  margin-top: 5vh;
+}
+
+@media only screen and (max-width: 600px) {
+  .sidebar img {
+    width: 70%;
+  }
+
+  .logo-sidebar {
+    margin-top: 3vh;
+  }
+}

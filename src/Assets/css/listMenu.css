@@ -1,0 +1,53 @@
+.list-menu {
+  width: 60%;
+  /* min-height: 80vh; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  background-color: rgba(190, 195, 202, 0.3);
+  box-shadow: inset 0 0 10px #686565;
+}
+
+.card-menu {
+  width: 15vw;
+  margin: 2vh;
+}
+
+.card-img img {
+  width: 100%;
+}
+
+.title-menu {
+  font-size: 3vh;
+  margin-top: 0vh;
+}
+
+.title-price {
+  font-size: 3.5vh;
+  font-weight: bold;
+  margin-top: -2vh;
+}
+
+.checked {
+  width: 20%;
+  position: absolute;
+  top: 20%;
+  left: 33%;
+  z-index: 2;
+  background-color: black;
+}
+
+@media only screen and (max-width: 600px) {
+  .card {
+    width: 20vw;
+    margin: 1vh;
+  }
+
+  .title-menu {
+    font-size: 2vh;
+  }
+
+  .title-price {
+    font-size: 3vh;
+  }
+}
