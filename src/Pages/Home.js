@@ -38,11 +38,44 @@ class Home extends React.Component {
     }
   };
 
+  handlePlus = (id) => {
+    const index = this.state.carts.findIndex((item) => {
+      return item.id_product === id;
+    });
+
+    let arrData = [...this.state.carts];
+    arrData[index] = {
+      ...arrData[index],
+      qty: this.state.carts[index].qty + 1,
+    };
+
+    this.setState({
+      carts: arrData,
+    });
+  };
+
+  handleMinus = (id) => {
+    const index = this.state.carts.findIndex((item) => {
+      return item.id_product === id;
+    });
+
+    if (this.state.carts[index].qty > 1) {
+      let arrData = [...this.state.carts];
+      arrData[index] = {
+        ...arrData[index],
+        qty: this.state.carts[index].qty - 1,
+      };
+
+      this.setState({
+        carts: arrData,
+      });
+    }
+  };
+
   getAllmenu = () => {
     const URI = "http://localhost:8001/";
     Axios.get(URI)
       .then((res) => {
-        // console.log(res.data.data);
         this.setState({
           menus: res.data.data,
         });
@@ -57,7 +90,6 @@ class Home extends React.Component {
   };
 
   render() {
-    console.log(this.state.carts);
     return (
       <>
         <HeaderHome />
@@ -69,7 +101,15 @@ class Home extends React.Component {
               this.addToCart(id, name, price, img)
             }
           />
-          <ListCart arrCarts={this.state.carts} />
+          <ListCart
+            arrCarts={this.state.carts}
+            handlePlus={(id_product) => {
+              this.handlePlus(id_product);
+            }}
+            handleMinus={(id_product) => {
+              this.handleMinus(id_product);
+            }}
+          />
         </div>
       </>
     );
