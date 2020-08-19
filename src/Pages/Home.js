@@ -72,6 +72,12 @@ class Home extends React.Component {
     }
   };
 
+  clearCarts = () => {
+    this.setState({
+      carts: [],
+    });
+  };
+
   getAllmenu = () => {
     const URI = "http://localhost:8001/";
     Axios.get(URI)
@@ -109,6 +115,7 @@ class Home extends React.Component {
             handleMinus={(id_product) => {
               this.handleMinus(id_product);
             }}
+            clearCart={this.clearCarts}
           />
         </div>
       </>

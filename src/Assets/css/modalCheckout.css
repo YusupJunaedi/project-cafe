@@ -1,0 +1,23 @@
+.text-bold {
+  font-weight: bold;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.btn-blueSky {
+  background: #57cad5;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-pink {
+  background: #f24f8a;
+  color: white;
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}

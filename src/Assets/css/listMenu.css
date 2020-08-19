@@ -3,7 +3,7 @@
   /* min-height: 80vh; */
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   background-color: rgba(190, 195, 202, 0.3);
   box-shadow: inset 0 0 10px #686565;
 }
