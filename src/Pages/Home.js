@@ -100,7 +100,7 @@ class Home extends React.Component {
       <>
         <HeaderHome />
         <div className="content">
-          <Sidebar />
+          <Sidebar updateMenu={this.getAllmenu} />
           <ListMenu
             arrMenus={this.state.menus}
             addToCart={(id, name, price, img) =>
