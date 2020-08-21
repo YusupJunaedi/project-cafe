@@ -11,6 +11,7 @@ class Home extends React.Component {
   state = {
     menus: [],
     carts: [],
+    categorys: [],
   };
 
   addToCart = (id, name, price, img) => {
@@ -79,7 +80,7 @@ class Home extends React.Component {
   };
 
   getAllmenu = () => {
-    const URI = "http://localhost:8001/";
+    const URI = process.env.REACT_APP_LINK_API;
     Axios.get(URI)
       .then((res) => {
         this.setState({
@@ -91,16 +92,49 @@ class Home extends React.Component {
       });
   };
 
+  searchMenu = (name, by) => {
+    const URI = `${process.env.REACT_APP_LINK_API}search?name=${name}&by=${by}`;
+    Axios.get(URI)
+      .then((res) => {
+        this.setState({
+          menus: res.data.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  getAllCategory = () => {
+    const URI = `${process.env.REACT_APP_LINK_API}categorys`;
+    Axios.get(URI)
+      .then((res) => {
+        this.setState({
+          categorys: res.data.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   componentDidMount = () => {
     this.getAllmenu();
+    this.getAllCategory();
   };
 
   render() {
     return (
       <>
-        <HeaderHome />
+        <HeaderHome
+          searchMenu={(name, by) => this.searchMenu(name, by)}
+          arrCarts={this.state.carts}
+        />
         <div className="content">
-          <Sidebar updateMenu={this.getAllmenu} />
+          <Sidebar
+            updateMenu={this.getAllmenu}
+            allCategory={this.state.categorys}
+          />
           <ListMenu
             arrMenus={this.state.menus}
             addToCart={(id, name, price, img) =>

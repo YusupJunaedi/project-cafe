@@ -15,7 +15,7 @@ const ListCart = (props) => {
       <div className="col-4 col-md-4 border-list-cart">
         <div className="row">
           <div className="col-12 col-md-12 mt-3 text-center">
-            <img src={food} alt="img-food" class="img-food" />
+            <img src={food} alt="img-food" className="img-food" />
             <p className="title-isempty">Your cart is empty</p>
             <p className="title-pleaseAdd">
               Please add some items from the menu

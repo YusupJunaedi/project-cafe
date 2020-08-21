@@ -1,5 +1,6 @@
 .list-cart {
   width: 35%;
+  border-top: 2px solid rgb(204, 199, 199);
 }
 
 .img-cart-list {
@@ -121,5 +122,8 @@
 
   .img-food {
     width: 70%;
+  }
+  .btn-list {
+    margin-left: 5.5vw;
   }
 }

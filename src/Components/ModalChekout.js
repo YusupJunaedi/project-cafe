@@ -28,7 +28,7 @@ class ModalCheckout extends React.Component {
       };
     });
 
-    const URL = `http://localhost:8001/addhistorys`;
+    const URL = `${process.env.REACT_APP_LINK_API}addhistorys`;
     Axios.post(URL, {
       productOrder: totalOrder,
       invoice: invoice,

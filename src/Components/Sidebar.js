@@ -16,7 +16,11 @@ const Sidebar = (props) => {
   return (
     <div className="sidebar">
       <div className="logo-sidebar">
-        <img src={logoFork} alt="logo-fork" />
+        <img
+          src={logoFork}
+          alt="logo-fork"
+          onClick={() => props.updateMenu()}
+        />
       </div>
       <div className="logo-sidebar">
         <img src={logoClipboard} alt="logo-clipboard" />
@@ -28,6 +32,7 @@ const Sidebar = (props) => {
         showModal={show}
         closeModal={handleClose}
         updateMenu={props.updateMenu}
+        allCategory={props.allCategory}
       />
     </div>
   );

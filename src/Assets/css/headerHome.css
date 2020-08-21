@@ -28,6 +28,7 @@
 .logo-search {
   width: 5%;
   text-align: center;
+  cursor: pointer;
 }
 
 .logo-search img {

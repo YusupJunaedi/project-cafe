@@ -12,7 +12,7 @@ class ModalAdd extends React.Component {
   };
 
   addMenu = () => {
-    const URL = "http://localhost:8001/addproduct";
+    const URL = `${process.env.REACT_APP_LINK_API}addproduct`;
     Axios.post(URL, {
       name_product: this.state.name,
       category_id: this.state.category,
@@ -101,7 +101,16 @@ class ModalAdd extends React.Component {
                         }}
                       >
                         <option></option>
-                        <option value="1">category</option>
+                        {this.props.allCategory.map((item) => {
+                          return (
+                            <option
+                              value={item.id_category}
+                              key={item.id_category}
+                            >
+                              {item.name_category}
+                            </option>
+                          );
+                        })}
                       </Form.Control>
                     </Col>
                   </Form.Group>

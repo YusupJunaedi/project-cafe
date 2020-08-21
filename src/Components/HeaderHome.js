@@ -5,22 +5,41 @@ import "../Assets/css/headerHome.css";
 import logoImg from "../Assets/img/menu.png";
 import logoSearch from "../Assets/img/magnifying-glass.png";
 
-const HeaderHome = () => {
+import ModalSearch from "../Components/ModalSearch";
+
+const HeaderHome = (props) => {
+  const [show, setShow] = React.useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <div className="header">
-      <div className="logo-menu">
-        <img src={logoImg} alt="Logo-Menu" />
+    <>
+      <div className="header">
+        <div className="logo-menu">
+          <img src={logoImg} alt="Logo-Menu" />
+        </div>
+        <div className="title-header">
+          <p>Food Items</p>
+        </div>
+        <div className="logo-search">
+          <img src={logoSearch} alt="logo-search" onClick={handleShow} />
+        </div>
+        <div className="title-cart">
+          <p>
+            Cart{" "}
+            <span class="badge badge-pill badge-primary">
+              {props.arrCarts.length}
+            </span>
+          </p>
+        </div>
       </div>
-      <div className="title-header">
-        <p>Food Items</p>
-      </div>
-      <div className="logo-search">
-        <img src={logoSearch} alt="logo-search" />
-      </div>
-      <div className="title-cart">
-        <p>Cart 2</p>
-      </div>
-    </div>
+      <ModalSearch
+        showModal={show}
+        closeModal={handleClose}
+        searchMenu={(name, by) => props.searchMenu(name, by)}
+      />
+    </>
   );
 };
 
