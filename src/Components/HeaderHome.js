@@ -28,7 +28,7 @@ const HeaderHome = (props) => {
         <div className="title-cart">
           <p>
             Cart{" "}
-            <span class="badge badge-pill badge-primary">
+            <span className="badge badge-pill badge-primary">
               {props.arrCarts.length}
             </span>
           </p>

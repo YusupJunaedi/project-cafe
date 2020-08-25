@@ -12,13 +12,23 @@ class ModalAdd extends React.Component {
   };
 
   addMenu = () => {
+    let formData = new FormData();
+    formData.append("name_product", this.state.name);
+    formData.append("price_product", this.state.price);
+    formData.append("category_id", this.state.category);
+    formData.append("image", this.state.image);
+
+    const configHeader = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+
+    console.log(formData);
+
     const URL = `${process.env.REACT_APP_LINK_API}addproduct`;
-    Axios.post(URL, {
-      name_product: this.state.name,
-      category_id: this.state.category,
-      price_product: this.state.price,
-      img_product: this.state.image,
-    }).then(() => {
+    Axios.post(URL, formData, configHeader).then((res) => {
+      console.log(res);
       this.props.updateMenu();
     });
   };
@@ -56,14 +66,11 @@ class ModalAdd extends React.Component {
                       Image
                     </Form.Label>
                     <Col sm="10" xs="10">
-                      <Form.Control
-                        type="text"
+                      <Form.File
+                        id="image"
                         onChange={(event) => {
-                          this.setState({
-                            image: event.target.value,
-                          });
+                          this.setState({ image: event.target.files[0] });
                         }}
-                        autocomplete="off"
                       />
                     </Col>
                   </Form.Group>

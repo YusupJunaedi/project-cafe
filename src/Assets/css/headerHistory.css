@@ -1,0 +1,33 @@
+.header {
+  width: 100%;
+  min-height: 8vh;
+  max-height: 8vh;
+  display: flex;
+  align-items: center;
+}
+
+.logo-menu {
+  width: 5%;
+  text-align: center;
+}
+
+.logo-menu img {
+  width: 50%;
+}
+
+.title-header-history {
+  width: 95%;
+  text-align: center;
+  margin-top: 1vw;
+}
+
+.title-header-history p {
+  font-size: 3vh;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+  .logo-menu img {
+    width: 80%;
+  }
+}

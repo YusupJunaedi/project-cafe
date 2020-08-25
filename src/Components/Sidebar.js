@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // import css
 import "../Assets/css/sidebar.css";
 // impor img
@@ -23,7 +24,9 @@ const Sidebar = (props) => {
         />
       </div>
       <div className="logo-sidebar">
-        <img src={logoClipboard} alt="logo-clipboard" />
+        <Link to="/history">
+          <img src={logoClipboard} alt="logo-clipboard" />
+        </Link>
       </div>
       <div className="logo-sidebar">
         <img src={logoAdd} alt="logo-add" onClick={handleShow} />
