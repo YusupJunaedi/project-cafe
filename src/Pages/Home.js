@@ -2,10 +2,13 @@ import React from "react";
 import "../Assets/css/homePage.css";
 import HeaderHome from "../Components/HeaderHome";
 import Axios from "axios";
+import { connect } from "react-redux";
 
 import Sidebar from "../Components/Sidebar";
 import ListMenu from "../Components/ListMenu";
 import ListCart from "../Components/ListCart";
+
+import { getAllMenuCreator } from "../redux/actions/action";
 
 class Home extends React.Component {
   state = {
@@ -121,6 +124,7 @@ class Home extends React.Component {
   componentDidMount = () => {
     this.getAllmenu();
     this.getAllCategory();
+    // this.props.changeMenus();
   };
 
   render() {
@@ -152,9 +156,31 @@ class Home extends React.Component {
             clearCart={this.clearCarts}
           />
         </div>
+        <button onClick={this.props.changeMenus}>Tombolllll</button>
       </>
     );
   }
 }
 
-export default Home;
+// const actionGetAllMenu = () => (dispatch) => {
+//   const URI = process.env.REACT_APP_LINK_API;
+//   Axios.get(URI)
+//     .then((res) => {
+//       return dispatch({ type: "CHANGE_MENUS", value: res.data.data });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// };
+
+const mapStateToProps = (state) => {
+  return { state };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeMenus: () => dispatch(getAllMenuCreator()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
