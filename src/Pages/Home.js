@@ -2,6 +2,7 @@ import React from "react";
 import "../Assets/css/homePage.css";
 import HeaderHome from "../Components/HeaderHome";
 import Axios from "axios";
+import { connect } from "react-redux";
 
 import Sidebar from "../Components/Sidebar";
 import ListMenu from "../Components/ListMenu";
@@ -121,9 +122,11 @@ class Home extends React.Component {
   componentDidMount = () => {
     this.getAllmenu();
     this.getAllCategory();
+    this.props.changeMenus();
   };
 
   render() {
+    console.log(this.props);
     return (
       <>
         <HeaderHome
@@ -157,4 +160,23 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const actionGetAllMenu = () => (dispatch) => {
+  const URI = process.env.REACT_APP_LINK_API;
+  Axios.get(URI)
+    .then((res) => {
+      return dispatch({ type: "CHANGE_MENUS", value: res.data.data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const mapStateToProps = (state) => {
+  return { state };
+};
+
+const reduxDispatch = (dispatch) => ({
+  changeMenus: () => dispatch(actionGetAllMenu()),
+});
+
+export default connect(mapStateToProps, reduxDispatch)(Home);
