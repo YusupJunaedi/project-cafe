@@ -2,20 +2,22 @@ import React from "react";
 import { Modal, Button, Row, Col, Form } from "react-bootstrap";
 import "../Assets/css/modalAdd.css";
 import Axios from "axios";
+import { connect } from "react-redux";
+import { getAllMenuCreator } from "../redux/actions/action";
 
 class ModalAdd extends React.Component {
   state = {
     name: null,
     image: null,
     price: null,
-    category: null,
+    categoryProduct: null,
   };
 
   addMenu = () => {
     let formData = new FormData();
     formData.append("name_product", this.state.name);
     formData.append("price_product", this.state.price);
-    formData.append("category_id", this.state.category);
+    formData.append("category_id", this.state.categoryProduct);
     formData.append("image", this.state.image);
 
     const configHeader = {
@@ -24,12 +26,10 @@ class ModalAdd extends React.Component {
       },
     };
 
-    console.log(formData);
-
     const URL = `${process.env.REACT_APP_LINK_API}addproduct`;
     Axios.post(URL, formData, configHeader).then((res) => {
       console.log(res);
-      this.props.updateMenu();
+      this.props.getAllMenu();
     });
   };
 
@@ -103,12 +103,12 @@ class ModalAdd extends React.Component {
                         className="select"
                         onChange={(event) => {
                           this.setState({
-                            category: event.target.value,
+                            categoryProduct: event.target.value,
                           });
                         }}
                       >
                         <option></option>
-                        {this.props.allCategory.map((item) => {
+                        {this.props.categorys.map((item) => {
                           return (
                             <option
                               value={item.id_category}
@@ -145,4 +145,16 @@ class ModalAdd extends React.Component {
   }
 }
 
-export default ModalAdd;
+const mapStateToProps = (state) => {
+  return {
+    categorys: state.category.data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAllMenu: () => dispatch(getAllMenuCreator()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalAdd);

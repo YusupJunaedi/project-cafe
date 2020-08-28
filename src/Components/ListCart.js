@@ -4,13 +4,39 @@ import food from "../Assets/img/food-and-restaurant.png";
 import "../Assets/css/listCart.css";
 import ModalCheckout from "./ModalChekout";
 
+import {
+  deleteALLCartCreator,
+  updateInvoiceCreator,
+  plusQtyCreator,
+  minusQtyCreator,
+} from "../redux/actions/action";
+
+import { useSelector, useDispatch } from "react-redux";
+
 const ListCart = (props) => {
+  const carts = useSelector((state) => state.cart.data);
+  const dispatch = useDispatch();
   const [show, setShow] = React.useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  if (props.arrCarts.length === 0) {
+  const handlePlus = (id) => {
+    const index = carts.findIndex((item) => {
+      return item.id_product === id;
+    });
+
+    dispatch(plusQtyCreator(index));
+  };
+
+  const handleMinus = (id) => {
+    const index = carts.findIndex((item) => {
+      return item.id_product === id;
+    });
+    dispatch(minusQtyCreator(index));
+  };
+
+  if (carts.length === 0) {
     return (
       <div className="col-4 col-md-4 border-list-cart">
         <div className="row">
@@ -28,7 +54,7 @@ const ListCart = (props) => {
     return (
       <>
         <div className="list-cart">
-          {props.arrCarts.map((item) => {
+          {carts.map((item) => {
             return (
               <div className="col-12 col-md-12 mt-3" key={item.id_product}>
                 <div className="row">
@@ -47,7 +73,7 @@ const ListCart = (props) => {
                       <button
                         className="button"
                         onClick={() => {
-                          props.handleMinus(item.id_product);
+                          handleMinus(item.id_product);
                         }}
                       >
                         -
@@ -56,7 +82,7 @@ const ListCart = (props) => {
                       <button
                         className="button"
                         onClick={() => {
-                          props.handlePlus(item.id_product);
+                          handlePlus(item.id_product);
                         }}
                       >
                         +
@@ -80,7 +106,7 @@ const ListCart = (props) => {
               <div className="col-6 col-md-6 text-right mt-5">
                 <p className="title-bold">
                   Rp.
-                  {props.arrCarts.reduce((total, item) => {
+                  {carts.reduce((total, item) => {
                     return total + item.price_product * item.qty;
                   }, 0)}
                 </p>
@@ -91,7 +117,10 @@ const ListCart = (props) => {
               <div className="col-12 col-md-12 text-center">
                 <button
                   className="btn btn-block bg-blueSky"
-                  onClick={handleShow}
+                  onClick={() => {
+                    dispatch(updateInvoiceCreator());
+                    handleShow();
+                  }}
                 >
                   CheckOut
                 </button>
@@ -99,7 +128,7 @@ const ListCart = (props) => {
               <div className="col-12 col-md-12 text-center mt-2">
                 <button
                   className="btn btn-block bg-pink"
-                  onClick={props.clearCart}
+                  onClick={() => dispatch(deleteALLCartCreator())}
                 >
                   Cancel
                 </button>
@@ -107,12 +136,7 @@ const ListCart = (props) => {
             </div>
           </div>
         </div>
-        <ModalCheckout
-          arrCarts={props.arrCarts}
-          showModal={show}
-          closeModal={handleClose}
-          clearCart={props.clearCart}
-        />
+        <ModalCheckout showModal={show} closeModal={handleClose} />
       </>
     );
   }

@@ -5,9 +5,14 @@ import "../Assets/css/headerHome.css";
 import logoImg from "../Assets/img/menu.png";
 import logoSearch from "../Assets/img/magnifying-glass.png";
 
+import { useSelector, useDispatch } from "react-redux";
+import { getAllMenuCreator } from "../redux/actions/action";
+
 import ModalSearch from "../Components/ModalSearch";
 
 const HeaderHome = (props) => {
+  const carts = useSelector((state) => state.cart.data);
+  const dispatch = useDispatch();
   const [show, setShow] = React.useState(false);
 
   const handleClose = () => setShow(false);
@@ -20,7 +25,7 @@ const HeaderHome = (props) => {
           <img src={logoImg} alt="Logo-Menu" />
         </div>
         <div className="title-header">
-          <p>Food Items</p>
+          <p onClick={() => dispatch(getAllMenuCreator())}>Food Items</p>
         </div>
         <div className="logo-search">
           <img src={logoSearch} alt="logo-search" onClick={handleShow} />
@@ -29,7 +34,7 @@ const HeaderHome = (props) => {
           <p>
             Cart{" "}
             <span className="badge badge-pill badge-primary">
-              {props.arrCarts.length}
+              {carts.length}
             </span>
           </p>
         </div>
@@ -37,7 +42,7 @@ const HeaderHome = (props) => {
       <ModalSearch
         showModal={show}
         closeModal={handleClose}
-        searchMenu={(name, by) => props.searchMenu(name, by)}
+        // searchMenu={(name, by) => props.searchMenu(name, by)}
       />
     </>
   );

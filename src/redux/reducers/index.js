@@ -1,13 +1,12 @@
 import { combineReducers } from "redux";
-import storeReducer from "./store";
-import asyncAPIReducer from "./asyncApi";
+import menuReducer from "./menu";
+import cartReducer from "./cart";
+import categoryReducer from "./category";
 
 const indexReducer = combineReducers({
-  //key: value
-  //key => pemanggilan
-  //value => reducer
-  // store: storeReducer,
-  asyncAPI: asyncAPIReducer,
+  menu: menuReducer,
+  cart: cartReducer,
+  category: categoryReducer,
 });
 
 export default indexReducer;

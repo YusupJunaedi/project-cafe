@@ -1,5 +1,7 @@
 import React from "react";
 import { Modal, Button, Row, Col, Form } from "react-bootstrap";
+import { connect } from "react-redux";
+import { searchMenuCreator } from "../redux/actions/action";
 
 class ModalSearch extends React.Component {
   state = {
@@ -81,4 +83,15 @@ class ModalSearch extends React.Component {
   }
 }
 
-export default ModalSearch;
+const mapStateToProps = (state) => {
+  return { state };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchMenu: (nameProduct, by) =>
+      dispatch(searchMenuCreator(nameProduct, by)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalSearch);

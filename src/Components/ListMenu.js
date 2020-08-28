@@ -2,12 +2,37 @@ import React from "react";
 // import css
 import "../Assets/css/listMenu.css";
 // import img
+import { useSelector, useDispatch } from "react-redux";
+import { addToCartCreator, deleteCartCreator } from "../redux/actions/action";
 
 const ListMenu = (props) => {
-  if (props.arrMenus) {
+  const menus = useSelector((state) => state.menu.data);
+  const carts = useSelector((state) => state.cart.data);
+  const dispatch = useDispatch();
+
+  const addToCart = (id, name, price, img) => {
+    const index = carts.findIndex((item) => {
+      return item.id_product === id;
+    });
+
+    if (index >= 0) {
+      dispatch(deleteCartCreator(index));
+    } else {
+      const newCart = {
+        id_product: id,
+        name_product: name,
+        qty: 1,
+        price_product: price,
+        img_product: img,
+      };
+      dispatch(addToCartCreator(newCart));
+    }
+  };
+
+  if (menus) {
     return (
       <div className="list-menu">
-        {props.arrMenus.map((item) => {
+        {menus.map((item) => {
           return (
             <div className="card-menu" key={item.id_product}>
               <div className="card-img">
@@ -15,7 +40,7 @@ const ListMenu = (props) => {
                   src={item.img_product}
                   alt="img-cofee"
                   onClick={() => {
-                    props.addToCart(
+                    addToCart(
                       item.id_product,
                       item.name_product,
                       item.price_product,

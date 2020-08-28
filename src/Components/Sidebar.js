@@ -17,11 +17,9 @@ const Sidebar = (props) => {
   return (
     <div className="sidebar">
       <div className="logo-sidebar">
-        <img
-          src={logoFork}
-          alt="logo-fork"
-          onClick={() => props.updateMenu()}
-        />
+        <Link to="/">
+          <img src={logoFork} alt="logo-fork" />
+        </Link>
       </div>
       <div className="logo-sidebar">
         <Link to="/history">
