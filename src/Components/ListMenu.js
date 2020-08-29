@@ -2,6 +2,7 @@ import React from "react";
 // import css
 import "../Assets/css/listMenu.css";
 // import img
+import checklist from "../Assets/img/tick.png";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCartCreator, deleteCartCreator } from "../redux/actions/action";
 
@@ -36,18 +37,30 @@ const ListMenu = (props) => {
           return (
             <div className="card-menu" key={item.id_product}>
               <div className="card-img">
-                <img
-                  src={item.img_product}
-                  alt="img-cofee"
-                  onClick={() => {
-                    addToCart(
-                      item.id_product,
-                      item.name_product,
-                      item.price_product,
-                      item.img_product
-                    );
-                  }}
-                />
+                {!item.checked ? (
+                  <div className="img-checklist">
+                    <img src={checklist} alt="checklist" />
+                  </div>
+                ) : (
+                  ""
+                )}
+                {/* <div className="img-checklist">
+                  <img src={checklist} alt="checklist" />
+                </div> */}
+                <div className="img-menu">
+                  <img
+                    src={item.img_product}
+                    alt="img-cofee"
+                    onClick={() => {
+                      addToCart(
+                        item.id_product,
+                        item.name_product,
+                        item.price_product,
+                        item.img_product
+                      );
+                    }}
+                  />
+                </div>
               </div>
               <p className="title-menu">{item.name_product}</p>
               <p className="title-price">Rp. {item.price_product}</p>

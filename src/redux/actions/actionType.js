@@ -8,6 +8,7 @@ const actionType = {
   plusQty: "PLUS_QTY",
   minusQty: "MINUS_QTY",
   getAllCategory: "GET_ALL_CATEGORY",
+  authLogin: "AUTH_LOGIN",
 };
 
 export default actionType;

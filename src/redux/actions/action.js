@@ -1,4 +1,9 @@
-import { getAllMenu, searchMenu, getAllCategory } from "../../utils/http";
+import {
+  getAllMenu,
+  searchMenu,
+  getAllCategory,
+  authLogin,
+} from "../../utils/http";
 import actionType from "./actionType";
 
 export const getAllMenuCreator = () => {
@@ -59,5 +64,12 @@ export const minusQtyCreator = (index) => {
   return {
     type: actionType.minusQty,
     payload: index,
+  };
+};
+
+export const authLoginCreator = (name, password) => {
+  return {
+    type: actionType.authLogin,
+    payload: authLogin(name, password),
   };
 };

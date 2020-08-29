@@ -19,15 +19,28 @@ const menuReducer = (prevState = initialState, { type, payload }) => {
       return {
         ...prevState,
         isRejected: true,
-        menus: payload,
+        data: payload,
         isPending: false,
       };
     case actionType.getAllMenu + "_FULFILLED":
+      let newData = [...prevState.data];
+      payload.data.data.map((item) => {
+        const dataMenu = {
+          id_product: item.id_product,
+          img_product: item.img_product,
+          name_category: item.name_category,
+          name_product: item.name_product,
+          price_product: item.price_product,
+          checked: false,
+        };
+        return (newData = newData.concat(dataMenu));
+      });
+
       return {
         ...prevState,
         isFulfilled: true,
         isPending: false,
-        data: payload.data.data,
+        data: newData,
         isRejected: false,
       };
     case actionType.searchMenu + "_PENDING":

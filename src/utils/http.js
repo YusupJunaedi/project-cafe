@@ -14,3 +14,11 @@ export const searchMenu = (name, by) => {
   const URI = `${process.env.REACT_APP_LINK_API}search?name=${name}&by=${by}`;
   return Axios.get(URI);
 };
+
+export const authLogin = (name, password) => {
+  const URI = `${process.env.REACT_APP_LINK_API}auth/login`;
+  return Axios.post(URI, {
+    username: name,
+    password: password,
+  });
+};
