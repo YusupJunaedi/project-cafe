@@ -73,3 +73,17 @@ export const authLoginCreator = (name, password) => {
     payload: authLogin(name, password),
   };
 };
+
+export const checkedMenuCreator = (index) => {
+  return {
+    type: actionType.checkedMenu,
+    payload: index,
+  };
+};
+
+export const uncheckedMenuCreator = (index) => {
+  return {
+    type: actionType.checkedMenu,
+    payload: index,
+  };
+};

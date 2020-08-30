@@ -24,12 +24,28 @@ const auth = (state = initialState, { type, payload }) => {
         isPending: false,
       };
     case actionType.authLogin + "_FULFILLED":
+      let admin = null;
+      let login = null;
+      if (payload.data.success) {
+        if (payload.data.data.level_id === 2) {
+          admin = true;
+          login = true;
+        } else {
+          admin = false;
+          login = true;
+        }
+      } else {
+        admin = false;
+        login = false;
+      }
       return {
         ...state,
         isFulfilled: true,
         isPending: false,
-        data: payload.data.data,
+        data: payload.data,
         isRejected: false,
+        isAdmin: admin,
+        isLogin: login,
       };
     // case actionType.authLogin:
     //   return {

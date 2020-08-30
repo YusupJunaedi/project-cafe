@@ -1,15 +1,13 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-
-const checkLogin = () => {
-  return true;
-};
+import { useSelector } from "react-redux";
 
 const PrivateRoute = ({ children, isLogin, ...rest }) => {
-  return checkLogin() ? (
-    <Route path="/private" exact render={() => children} />
+  const auth = useSelector((state) => state.auth);
+  return auth.isLogin ? (
+    <Route path="/" exact render={() => children} />
   ) : (
-    <Redirect to="/history" />
+    <Redirect to="/login" />
   );
 };
 

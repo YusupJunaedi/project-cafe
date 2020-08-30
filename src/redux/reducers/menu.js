@@ -63,6 +63,25 @@ const menuReducer = (prevState = initialState, { type, payload }) => {
         data: payload.data.data,
         isRejected: false,
       };
+    case actionType.checkedMenu:
+      let arrData = [...prevState.data];
+      arrData[payload] = {
+        ...arrData[payload],
+        checked: true,
+      };
+      return {
+        ...prevState,
+        data: arrData,
+      };
+    case actionType.unCheckedMenu:
+      arrData[payload] = {
+        ...arrData[payload],
+        checked: false,
+      };
+      return {
+        ...prevState,
+        data: arrData,
+      };
     default:
       return prevState;
   }

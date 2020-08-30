@@ -9,6 +9,8 @@ const actionType = {
   minusQty: "MINUS_QTY",
   getAllCategory: "GET_ALL_CATEGORY",
   authLogin: "AUTH_LOGIN",
+  checkedMenu: "CHECKED_MENU",
+  unCheckedMenu: "UNCHECKED_MENU",
 };
 
 export default actionType;

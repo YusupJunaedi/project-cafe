@@ -4,10 +4,15 @@ import "../Assets/css/loginPage.css";
 import { connect } from "react-redux";
 import { authLoginCreator } from "../redux/actions/action";
 
+
 class Login extends React.Component {
   state = {
     username: null,
     password: null,
+  };
+
+  onSubmit = () => {
+    this.props.history.push("/");
   };
 
   render() {
@@ -47,9 +52,10 @@ class Login extends React.Component {
               type="submit"
               className="fadeIn fourth"
               value="Log In"
-              onClick={() =>
-                this.props.login(this.state.username, this.state.password)
-              }
+              onClick={() => {
+                this.props.login(this.state.username, this.state.password);
+                this.onSubmit();
+              }}
             />
           </div>
         </div>
@@ -58,10 +64,14 @@ class Login extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return { state };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     login: (name, password) => dispatch(authLoginCreator(name, password)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

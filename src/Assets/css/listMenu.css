@@ -27,6 +27,15 @@
   z-index: 1;
 }
 
+.img-checklist img {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  padding-top: 5vw;
+  padding-bottom: 3.5vw;
+  padding-left: 5vw;
+  padding-right: 6.5vw;
+}
+
 .title-menu {
   font-size: 3vh;
   margin-top: 0vh;
