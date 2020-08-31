@@ -1,7 +1,12 @@
 import Axios from "axios";
 
 export const getAllMenu = () => {
-  const URI = process.env.REACT_APP_LINK_API;
+  const URI = `${process.env.REACT_APP_LINK_API}pagination?page=1&limit=9`;
+  return Axios.get(URI);
+};
+
+export const getAllTransaksi = () => {
+  const URI = `${process.env.REACT_APP_LINK_API}transaksi`;
   return Axios.get(URI);
 };
 

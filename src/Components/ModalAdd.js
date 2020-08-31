@@ -3,7 +3,7 @@ import { Modal, Button, Row, Col, Form } from "react-bootstrap";
 import "../Assets/css/modalAdd.css";
 import Axios from "axios";
 import { connect } from "react-redux";
-import { getAllMenuCreator } from "../redux/actions/action";
+import { getAllMenuCreator, clearMenuCreator } from "../redux/actions/action";
 
 class ModalAdd extends React.Component {
   state = {
@@ -133,6 +133,7 @@ class ModalAdd extends React.Component {
               variant="blueSky"
               onClick={() => {
                 this.addMenu();
+                this.props.clearMenu();
                 this.props.closeModal();
               }}
             >
@@ -154,6 +155,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllMenu: () => dispatch(getAllMenuCreator()),
+    clearMenu: () => dispatch(clearMenuCreator()),
   };
 };
 

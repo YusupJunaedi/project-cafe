@@ -20,20 +20,16 @@ const ModalCheckout = (props) => {
   const addHistory = () => {
     const totalAmount = totalPrice();
 
+    let orders = [];
     const totalOrder = carts.map((item) => {
-      return {
-        invoice: invoice,
-        product_id: item.id_product,
-        qty: item.qty,
-        total_price: item.price_product * item.qty,
-      };
+      return (orders = orders.concat(item.name_product));
     });
 
-    const URL = `${process.env.REACT_APP_LINK_API}history/addhistory`;
+    const URL = `${process.env.REACT_APP_LINK_API}transaksi/addtransaksi`;
     Axios.post(URL, {
-      productOrder: totalOrder,
       invoice: invoice,
-      cashir: 1,
+      cashier: "1",
+      orders: orders.toString(),
       amount: totalAmount,
     })
       .then(() => {

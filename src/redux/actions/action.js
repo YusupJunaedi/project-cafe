@@ -3,6 +3,7 @@ import {
   searchMenu,
   getAllCategory,
   authLogin,
+  getAllTransaksi,
 } from "../../utils/http";
 import actionType from "./actionType";
 
@@ -10,6 +11,12 @@ export const getAllMenuCreator = () => {
   return {
     type: actionType.getAllMenu,
     payload: getAllMenu(),
+  };
+};
+
+export const clearMenuCreator = () => {
+  return {
+    type: actionType.clearMenu,
   };
 };
 
@@ -85,5 +92,18 @@ export const uncheckedMenuCreator = (index) => {
   return {
     type: actionType.checkedMenu,
     payload: index,
+  };
+};
+
+export const getAllTransaksiCreator = () => {
+  return {
+    type: actionType.getAllTransaksi,
+    payload: getAllTransaksi(),
+  };
+};
+
+export const logoutCreator = () => {
+  return {
+    type: actionType.logout,
   };
 };

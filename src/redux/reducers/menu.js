@@ -82,6 +82,11 @@ const menuReducer = (prevState = initialState, { type, payload }) => {
         ...prevState,
         data: arrData,
       };
+    case actionType.clearMenu:
+      return {
+        ...prevState,
+        data: [],
+      };
     default:
       return prevState;
   }

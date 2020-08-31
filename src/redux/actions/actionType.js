@@ -11,6 +11,10 @@ const actionType = {
   authLogin: "AUTH_LOGIN",
   checkedMenu: "CHECKED_MENU",
   unCheckedMenu: "UNCHECKED_MENU",
+  clearMenu: "CLEAR_MENU",
+  getAllTransaksi: "GET_ALL_TRANSAKSI",
+  addTransaksi: "ADD_TRANSAKSI",
+  logout: "AUTH_LOGOUT",
 };
 
 export default actionType;

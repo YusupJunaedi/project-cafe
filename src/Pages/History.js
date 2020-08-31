@@ -3,6 +3,8 @@ import Axios from "axios";
 import HeaderHistory from "../Components/HeaderHistory";
 import Sidebar from "../Components/Sidebar";
 import ContentHistory from "../Components/ContentHistory";
+import { connect } from "react-redux";
+import { getAllTransaksiCreator } from "../redux/actions/action";
 
 import "../Assets/css/historyPage.css";
 
@@ -24,6 +26,10 @@ class History extends React.Component {
       });
   };
 
+  componentDidMount = () => {
+    this.props.getAllTransaksi();
+  };
+
   render() {
     return (
       <>
@@ -40,4 +46,14 @@ class History extends React.Component {
   }
 }
 
-export default History;
+const mapStateToProps = (state) => {
+  return { state };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAllTransaksi: () => dispatch(getAllTransaksiCreator()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(History);

@@ -6,12 +6,16 @@ import "../Assets/css/sidebar.css";
 import logoFork from "../Assets/img/fork.png";
 import logoClipboard from "../Assets/img/clipboard.png";
 import logoAdd from "../Assets/img/add.png";
+import logoLogout from "../Assets/img/logout.png";
 import ModalAdd from "./ModalAdd";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clearMenuCreator, logoutCreator } from "../redux/actions/action";
 
 const Sidebar = (props) => {
   const auth = useSelector((state) => state.auth);
   const [show, setShow] = React.useState(false);
+
+  const dispatch = useDispatch();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -26,7 +30,11 @@ const Sidebar = (props) => {
       {auth.isAdmin ? (
         <div className="logo-sidebar">
           <Link to="/history">
-            <img src={logoClipboard} alt="logo-clipboard" />
+            <img
+              src={logoClipboard}
+              alt="logo-clipboard"
+              onClick={() => dispatch(clearMenuCreator())}
+            />
           </Link>
         </div>
       ) : null}
@@ -36,6 +44,17 @@ const Sidebar = (props) => {
           <img src={logoAdd} alt="logo-add" onClick={handleShow} />
         </div>
       ) : null}
+
+      <div className="logo-sidebar">
+        <img
+          src={logoLogout}
+          alt="logo-user"
+          onClick={() => {
+            dispatch(logoutCreator());
+            dispatch(clearMenuCreator());
+          }}
+        />
+      </div>
 
       <ModalAdd
         showModal={show}

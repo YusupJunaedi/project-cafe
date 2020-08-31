@@ -47,13 +47,16 @@ const auth = (state = initialState, { type, payload }) => {
         isAdmin: admin,
         isLogin: login,
       };
-    // case actionType.authLogin:
-    //   return {
-    //     ...state,
-    //     token: payload,
-    //     isAdmin: true,
-    //     isLogin: true,
-    //   };
+    case actionType.logout:
+      return {
+        ...state,
+        data: null,
+        isAdmin: false,
+        isLogin: false,
+        isPending: false,
+        isFulfilled: false,
+        isRejected: false,
+      };
     default:
       return state;
   }
