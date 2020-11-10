@@ -58,7 +58,7 @@ const ListMenu = (props) => {
           return (
             <div className="card-menu" key={item.id_product}>
               <div className="card-img">
-                {/* {item.checked ? (
+                {item.checked ? (
                   <div className="img-checklist">
                     <img
                       src={checklist}
@@ -76,7 +76,7 @@ const ListMenu = (props) => {
                   </div>
                 ) : (
                   ""
-                )} */}
+                )}
 
                 <div className="img-menu">
                   <img

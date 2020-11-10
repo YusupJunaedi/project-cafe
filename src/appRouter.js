@@ -8,7 +8,7 @@ import PrivateRoute from "./Components/PrivateRoute";
 const AppRouter = () => {
   return (
     <Router>
-      <PrivateRoute isLogin={true}>
+      <PrivateRoute>
         <Home />
       </PrivateRoute>
 

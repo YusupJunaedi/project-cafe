@@ -101,6 +101,7 @@ class ModalAdd extends React.Component {
                         as="select"
                         size="lg"
                         className="select"
+                        defaultValue
                         onChange={(event) => {
                           this.setState({
                             categoryProduct: event.target.value,

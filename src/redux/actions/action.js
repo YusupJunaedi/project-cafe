@@ -90,7 +90,7 @@ export const checkedMenuCreator = (index) => {
 
 export const uncheckedMenuCreator = (index) => {
   return {
-    type: actionType.checkedMenu,
+    type: actionType.unCheckedMenu,
     payload: index,
   };
 };

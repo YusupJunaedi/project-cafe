@@ -52,7 +52,7 @@ const menuReducer = (prevState = initialState, { type, payload }) => {
       return {
         ...prevState,
         isRejected: true,
-        menus: payload,
+        data: payload,
         isPending: false,
       };
     case actionType.searchMenu + "_FULFILLED":
@@ -69,18 +69,21 @@ const menuReducer = (prevState = initialState, { type, payload }) => {
         ...arrData[payload],
         checked: true,
       };
+      let newMenu = arrData;
       return {
         ...prevState,
-        data: arrData,
+        data: newMenu,
       };
     case actionType.unCheckedMenu:
-      arrData[payload] = {
-        ...arrData[payload],
+      let arrMenu = [...prevState.data]
+      arrMenu[payload] = {
+        ...arrMenu[payload],
         checked: false,
       };
+      let newMenuArr = arrMenu;
       return {
         ...prevState,
-        data: arrData,
+        data: newMenuArr,
       };
     case actionType.clearMenu:
       return {

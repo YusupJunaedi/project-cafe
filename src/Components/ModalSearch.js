@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Button, Row, Col, Form } from "react-bootstrap";
 import { connect } from "react-redux";
-import { searchMenuCreator } from "../redux/actions/action";
+import { searchMenuCreator, clearMenuCreator } from "../redux/actions/action";
 
 class ModalSearch extends React.Component {
   state = {
@@ -71,6 +71,7 @@ class ModalSearch extends React.Component {
               variant="blueSky"
               onClick={() => {
                 this.props.closeModal();
+                this.props.clearMenu();
                 this.props.searchMenu(this.state.search, this.state.by);
               }}
             >
@@ -91,6 +92,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     searchMenu: (nameProduct, by) =>
       dispatch(searchMenuCreator(nameProduct, by)),
+    clearMenu: () => dispatch(clearMenuCreator()),
   };
 };
 
